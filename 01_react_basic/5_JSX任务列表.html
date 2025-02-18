@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>任务列表</title>
+    <style>
+      h1 {
+        color: #333;
+      }
+
+      .task-list {
+        margin: 0 auto;
+        background-color: #fff;
+        padding: 20px;
+      }
+
+      .task-item {
+        padding: 10px 0;
+        border-bottom: 1px solid #eee;
+      }
+
+      .task-item:last-child {
+        border-bottom: none;
+      }
+
+      .task-item.completed {
+        color: green;
+      }
+
+      .task-item.incomplete {
+        color: indigo;
+      }
+
+      .stats {
+        text-align: center;
+        margin-bottom: 20px;
+        font-size: 18px;
+        color: #555;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- CDN引入，依赖三个包：react、react-dom、babel -->
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+    <script type="text/babel">
+      const taskList = [
+        {
+          id: 1,
+          name: "吃饭",
+          completed: true,
+        },
+        {
+          id: 2,
+          name: "睡觉",
+          completed: false,
+        },
+        {
+          id: 3,
+          name: "敲代码",
+          completed: false,
+        },
+      ];
+
+      const incompleteCount = taskList.filter((task) => !task.completed).length;
+
+      const element = (
+        <div>
+          <h1>任务列表</h1>
+          <div className="stats">未完成的任务数: {incompleteCount}</div>
+          <div className="task-list">
+            {taskList.map((task) => (
+              <div
+                key={task.id}
+                className={`task-item ${
+                  task.completed ? "completed" : "incomplete"
+                }`}
+              >
+                {task.name}
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(element);
+    </script>
+  </body>
+</html>

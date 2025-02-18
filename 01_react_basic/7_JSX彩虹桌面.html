@@ -1,0 +1,106 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>彩虹点击器</title>
+    <style>
+      body {
+        font-family: Arial, sans-serif;
+        background-color: #f4f4f4;
+        margin: 0;
+        padding: 20px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        flex-direction: column;
+      }
+
+      h2 {
+        color: black; /* 初始颜色 */
+        transition: color 0.3s ease; /* 添加颜色过渡效果 */
+      }
+
+      button {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+        padding: 10px 20px;
+        font-size: 16px;
+        cursor: pointer;
+        border-radius: 5px;
+        margin-top: 20px;
+      }
+
+      button:hover {
+        background-color: #45a049;
+      }
+
+      .achievement {
+        color: #ff5722;
+        font-size: 18px;
+        margin-top: 20px;
+        font-weight: bold;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- CDN引入，依赖三个包：react、react-dom、babel -->
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+    <script type="text/babel">
+      // 颜色列表
+      const colors = [
+        "black",
+        "red",
+        "orange",
+        "yellow",
+        "green",
+        "blue",
+        "indigo",
+        "purple",
+      ];
+
+      // 初始状态
+      let clickCount = 0;
+      let currentColorIndex = 0;
+
+      // 点击按钮的逻辑JSX
+      const handleClick = () => {
+        clickCount++;
+        currentColorIndex = (currentColorIndex + 1) % colors.length; // 循环颜色
+        rootRender();
+      };
+
+      // 渲染函数
+      const rootRender = () => {
+        const message = `你已经点击了 ${clickCount} 次`;
+        const textColor = colors[currentColorIndex]; // 当前颜色
+
+        // 隐藏成就提示
+        const achievement =
+          clickCount > 10 ? (
+            <div className="achievement">🎉 隐藏成就：点击超过 10 次！</div>
+          ) : null;
+
+        root.render(
+          <div>
+            <h2 style={{ color: textColor }}>{message}</h2>
+            <button onClick={handleClick}>点击我 🌈</button>
+            {achievement}
+          </div>
+        );
+      };
+
+      // 初始化渲染
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      rootRender();
+    </script>
+  </body>
+</html>
+

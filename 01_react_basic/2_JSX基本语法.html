@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Hello React</title>
+  </head>
+  <body>
+    <div id="root"></div>
+    <!-- CDN引入，依赖三个包：react、react-dom、babel -->
+    <script src="./lib/react.js"></script>
+    <script src="./lib/react-dom.js"></script>
+    <script src="./lib/babel.js"></script>
+
+    <script type="text/babel">
+      const msg = "zhangsan";
+      const n = 10;
+      const title = "哪吒";
+      const imgUrl =
+        "https://static-cdn-oss.mosoteach.cn/mssvc/default-avatar@2x.png?x-oss-process=style/s300x300";
+      const href = "https://www.baidu.com";
+      const objStyle = { color: "red", fontSize: "30px" };
+
+      const element = (
+        <div>
+          <h2>Hello JSX</h2>
+          <h3>zhangsan</h3>
+          <h4>计算：{10 * n}</h4>
+          <h1 title={title}>我是h1元素</h1>
+          <img rc={imgUrl} alt="图片" style={{ width: "40px" }} />
+          <p>
+            <a href={href}>百度一下</a>
+          </p>
+          <div style={objStyle}>有样式的文字</div>
+        </div>
+      );
+      const root = ReactDOM.createRoot(document.querySelector("#root"));
+      root.render(element);
+    </script>
+  </body>
+</html>
