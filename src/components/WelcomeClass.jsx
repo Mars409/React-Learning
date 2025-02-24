@@ -1,0 +1,12 @@
+import { Component  } from "react";
+import PropTypes from "prop-types";
+
+class WelcomeClass extends Component {
+  render() {
+    return<h1>Hello World</h1>;
+    }
+}
+WelcomeClass.PropTypes = {
+    name: PropTypes.string,
+};
+export default WelcomeClass;
