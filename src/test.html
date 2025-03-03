@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>浏览器 API 测试</title>
+</head>
+
+<body>
+    <button id="testButton">测试 Geolocation API</button>
+    <script>
+        const button = document.getElementById('testButton');
+        button.addEventListener('click', function () {
+            if ('geolocation' in navigator) {
+                navigator.geolocation.getCurrentPosition(function (position) {
+                    console.log('当前位置：纬度 ' + position.coords.latitude + ', 经度 ' + position.coords.longitude);
+                }, function (error) {
+                    console.error('获取位置信息时出错：' + error.message);
+                });
+            } else {
+                console.log('浏览器不支持 Geolocation API');
+            }
+        });
+    </script>
+</body>
+
+</html>
